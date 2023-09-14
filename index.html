@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Interés</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            width: 90%; /* Ancho máximo ajustado al 90% */
+            max-width: 800px; /* Cambiado a 500px */
+            min-height: 500px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 90%;
+            padding: 10px 0;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Interés</h1>
+        <label for="principal">Capital Principal:</label>
+        <input type="number" id="principal" placeholder="Ingrese el capital principal" required><br><br>
+
+        <label for="rate">Tasa de Interés (%):</label>
+        <input type="number" id="rate" placeholder="Ingrese la tasa de interés" required><br><br>
+
+        <label for="time">Tiempo (en años):</label>
+        <input type="number" id="time" placeholder="Ingrese el tiempo en años" required><br><br>
+
+        <button id="simpleInterestBtn">Calcular Interés Simple</button>
+        <button id="compoundInterestBtn">Calcular Interés Compuesto</button><br><br>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("simpleInterestBtn").addEventListener("click", function() {
+            const principal = parseFloat(document.getElementById("principal").value);
+            const rate = parseFloat(document.getElementById("rate").value);
+            const time = parseFloat(document.getElementById("time").value);
+
+            const simpleInterest = (principal * rate * time) / 100;
+            document.getElementById("result").innerHTML = `El interés simple es: $${simpleInterest.toFixed(2)}`;
+        });
+
+        document.getElementById("compoundInterestBtn").addEventListener("click", function() {
+            const principal = parseFloat(document.getElementById("principal").value);
+            const rate = parseFloat(document.getElementById("rate").value);
+            const time = parseFloat(document.getElementById("time").value);
+
+            const compoundInterest = principal * (Math.pow(1 + rate / 100, time) - 1);
+            document.getElementById("result").innerHTML = `El interés compuesto es: $${compoundInterest.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
