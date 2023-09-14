@@ -1,3 +1,4 @@
+/* Estilos para el contenedor */
 body {
     font-family: Arial, sans-serif;
     background-color: #333;
@@ -14,8 +15,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     padding: 20px;
-    width: 90%; /* Ancho máximo ajustado al 90% */
-    max-width: 800px; /* Cambiado a 500px */
+    width: 90%;
+    max-width: 800px;
     min-height: 500px;
 }
 
@@ -59,4 +60,45 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
     margin-top: 20px;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Estilos para el botón del modal */
+.modal-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.modal-button:hover {
+    background-color: #0056b3;
 }
