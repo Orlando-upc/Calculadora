@@ -1,18 +1,34 @@
 
-document.getElementById("simpleInterestBtn").addEventListener("click", function() {
-    const principal = parseFloat(document.getElementById("principal").value);
-    const rate = parseFloat(document.getElementById("rate").value);
-    const time = parseFloat(document.getElementById("time").value);
+const typeTimeSelect = document.getElementById("typeTime");
+const rangeDateInputs = document.getElementById("rangeDateInputs");
+const dateDetailInputs = document.getElementById("dateDetailInputs");
 
-    const simpleInterest = (principal * rate * time) / 100;
-    document.getElementById("result").innerHTML = `El interés simple es: $${simpleInterest.toFixed(2)}`;
+document.getElementById("valueToCalculate").addEventListener("change", function() {
+    const selectedValue = this.value;
+    document.querySelectorAll('label[id^="label"]').forEach(label => {
+        setVisibility(selectedValue, label, label.htmlFor);
+    });
+
+    document.querySelectorAll('input[id^="input"]').forEach(input => {
+        setVisibility(selectedValue, input, input.id);
+    });
 });
 
-document.getElementById("compoundInterestBtn").addEventListener("click", function() {
-    const principal = parseFloat(document.getElementById("principal").value);
-    const rate = parseFloat(document.getElementById("rate").value);
-    const time = parseFloat(document.getElementById("time").value);
-
-    const compoundInterest = principal * (Math.pow(1 + rate / 100, time) - 1);
-    document.getElementById("result").innerHTML = `El interés compuesto es: $${compoundInterest.toFixed(2)}`;
+typeTimeSelect.addEventListener("change", function () {
+    if (typeTimeSelect.value === "rangeDate") {
+        rangeDateInputs.style.display = "flex";
+        dateDetailInputs.style.display = "none";
+    } else if (typeTimeSelect.value === "dateDetail") {
+        rangeDateInputs.style.display = "none";
+        dateDetailInputs.style.display = "flex";
+    }
 });
+
+function setVisibility(selectedValue, element, value) {
+    if (selectedValue === value) {
+        element.style.display = "none"
+    } else {
+        element.style.display = "block";
+    }
+}
+

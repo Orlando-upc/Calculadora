@@ -14,8 +14,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     padding: 20px;
-    width: 90%; /* Ancho máximo ajustado al 90% */
-    max-width: 800px; /* Cambiado a 500px */
+    width: 100%;
+    max-width: 800px;
     min-height: 500px;
 }
 
@@ -59,4 +59,51 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
     margin-top: 20px;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 93%;
+    background-color: #fff;
+    margin-bottom: 3%;
+}
+
+select option {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 97%;
+    background-color: #fff;
+    justify-content: center;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
 }

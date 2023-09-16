@@ -9,17 +9,77 @@
 <body>
     <div class="container">
         <h1>Calculadora de Interés</h1>
-        <label for="principal">Capital Principal:</label>
-        <input type="number" id="principal" placeholder="Ingrese el capital principal" required><br><br>
 
-        <label for="rate">Tasa de Interés (%):</label>
-        <input type="number" id="rate" placeholder="Ingrese la tasa de interés" required><br><br>
 
-        <label for="time">Tiempo (en años):</label>
-        <input type="number" id="time" placeholder="Ingrese el tiempo en años" required><br><br>
+        <label for="selectTypeInterest"> Que desea calcular </label>
+        <select id="selectTypeInterest">
+            <option value="inte">Interés Simple</option>
+            <option value="compoundInterest">Interés Compuesto</option>
+        </select>
 
-        <button id="simpleInterestBtn">Calcular Interés Simple</button>
-        <button id="compoundInterestBtn">Calcular Interés Compuesto</button><br><br>
+        <label for="valueToCalculate">Valor a Hallar:</label>
+        <select id="valueToCalculate">
+            <option value="inputInterest">Interés</option>
+            <option value="inputInterestRate">Tasa de Interés</option>
+            <option value="inputCapital">Capital</option>
+            <option value="inputTime">Tiempo</option>
+            <option value="inputFinalAmount">Monto Final</option>
+        </select>
+
+        <label for="typeTime"> Que desea calcular </label>
+        <select id="typeTime">
+            <option value="rangeDate">Rango de fechas</option>
+            <option value="dateDetail">Fecha precisa</option>
+        </select>
+
+        <div id="inputsContainer">
+            <div id="rangeDateInputs" class="inline-elements" style="display: flex;">
+                <div class="row">
+                    <div class="column">
+                        <label for="startDate">Fecha de inicio:</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="column">
+                        <label for="endDate">Fecha de fin:</label>
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+            </div>
+
+            <div id="dateDetailInputs" class="inline-elements" style="display: none;">
+                <div class="row">
+                    <div class="column">
+                        <label for="year">Año:</label>
+                        <input type="number" placeholder="Ingrese el año" id="year">
+                    </div>
+                    <div class="column">
+                        <label for="month">Mes:</label>
+                        <input type="number" placeholder="Ingrese el mes" id="month">
+                    </div>
+                    <div class="column">
+                        <label for="day">Día:</label>
+                        <input type="number" placeholder="Ingrese el dia" id="day">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <label for="inputInterest" id="labelInterest" style="display: none;">Interés:</label>
+        <input type="number" id="inputInterest" style="display: none;" placeholder="Ingrese el interés">
+
+        <label for="inputInterestRate" id="labelInterestRate" style="display: none;">Tasa de Interés (%):</label>
+        <input type="number" id="inputInterestRate" style="display: none;" placeholder="Ingrese la tasa de interés">
+
+        <label for="inputCapital" id="labelCapital" style="display: none;">Capital:</label>
+        <input type="number" id="inputCapital" style="display: none;" placeholder="Ingrese el capital">
+
+        <label for="inputTime" id="labelTime" style="display: none;">Tiempo (en años):</label>
+        <input type="number" id="inputTime" style="display: none;" placeholder="Ingrese el tiempo en años">
+
+        <label for="inputFinalAmount" id="labelFinalAmount" style="display: none;">Monto Final:</label>
+        <input type="number" id="inputFinalAmount" style="display: none;" placeholder="Ingrese el monto final">
+
+        <button id="simpleInterestBtn">Calcular</button>
 
         <div id="result"></div>
     </div>
