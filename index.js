@@ -88,7 +88,7 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
             if (day === 0 && month > 0 && year === 0) {
                 montoFinal = capital * (1 + (inputInterestRate / 100) * (month / 12));
             }
-            if (day > 0 && month === 0 && year === 0) {
+            if (day === 0 && month === 0 && year > 0) {
                 montoFinal = capital * (1 + (inputInterestRate / 100) * (year));
             }
         } else if (typeTimeSelect.value === 'rangeDate') {
@@ -100,7 +100,7 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
         document.getElementById("inputInterest").value = montoFinal - capital;
         document.getElementById("resultSimpleInterest").innerHTML = `El monto final es: $${montoFinal}`;
 
-        // calcular interés que produce un capital, teniendo capital, tasa de interes y tiempo
+    // calcular interés que produce un capital, teniendo capital, tasa de interes y tiempo
     } else if (valueToCalculate.value === 'inputInterest') {
         let interes = 0;
         if (typeTimeSelect.value === 'dateDetail') {
@@ -114,7 +114,7 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
             if (day === 0 && month > 0 && year === 0) {
                 interes = capital * ((inputInterestRate / 100) * (month / 12));
             }
-            if (day > 0 && month === 0 && year === 0) {
+            if (day === 0 && month === 0 && year > 0) {
                 interes = capital * ((inputInterestRate / 100) * (year));
             }
         } else if (typeTimeSelect.value === 'rangeDate') {
@@ -123,7 +123,7 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
         }
         document.getElementById("resultSimpleInterest").innerHTML = `El interés que produce es: $${interes}`;
 
-        // calcular capital, teniendo tasa de interes, intereses y tiempo
+    // calcular capital, teniendo tasa de interes, intereses y tiempo
     } else if (valueToCalculate.value === 'inputCapital') {
         let capital = 0;
         if (typeTimeSelect.value === 'dateDetail') {
@@ -137,7 +137,7 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
             if (day === 0 && month > 0 && year === 0) {
                 capital = inputInterest / ((inputInterestRate / 100) * (month / 12));
             }
-            if (day > 0 && month === 0 && year === 0) {
+            if (day === 0 && month === 0 && year > 0) {
                 capital = inputInterest / ((inputInterestRate / 100) * (year));
             }
         } else if (typeTimeSelect.value === 'rangeDate') {
@@ -159,7 +159,7 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
             if (day === 0 && month > 0 && year === 0) {
                 tasaInteres = inputInterest / ( capital * (month / 12));
             }
-            if (day > 0 && month === 0 && year === 0) {
+            if (day === 0 && month === 0 && year > 0) {
                 tasaInteres = inputInterest / ( capital * (year));
             }
         } else if (typeTimeSelect.value === 'rangeDate') {
