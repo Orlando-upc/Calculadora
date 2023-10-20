@@ -76,7 +76,6 @@ document.getElementById("valueToCalculateAC").addEventListener("change", functio
 })
 
 document.getElementById("valueToCalculateACValue").addEventListener("change", function () {
-    debugger
     const selectedValue = this.value;
     if (selectedValue === 'inputInterestAC' || selectedValue === 'inputFinalAmountAC') {
         document.getElementById('labelInterestRateAC').style.display = 'block';
@@ -209,7 +208,6 @@ document.getElementById("simpleInterestBtn").addEventListener("click", function(
         } else if (typeTimeSelect.value === 'rangeDate') {
             const diferenciaEnMilisegundos = Math.abs(endDate.getTime() - startDate.getTime());
             const days = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
-            debugger
             montoFinal = capital * (1 + (inputInterestRate / 100) * (days / 365));
         }
         document.getElementById("result").innerHTML = `El monto final es: $${Math.floor(montoFinal)}`;
@@ -431,7 +429,6 @@ document.getElementById("AmortizationCapitalizationBtn").addEventListener("click
     const selectedValue = document.getElementById("valueToCalculateAC").value
     const selectedACValue = document.getElementById("valueToCalculateACValue").value
     let periodos = 0;
-    debugger
     if (year != 0) {
         periodos = year;
     } else if (month != 0) {
