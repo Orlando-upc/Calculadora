@@ -29,8 +29,48 @@ document.getElementById("selectTypeInterest").addEventListener("change", functio
         document.getElementById('compoundInterest').style.display = 'none';
     }
 
+    if (selectedValue === 'simpleInterest' || selectedValue === 'compoundInterest') {
+        document.getElementById('interest').style.display = 'block';
+    } else {
+        document.getElementById('interest').style.display = 'none';
+    }
+
+    if (selectedValue === 'internalRateReturn') {
+        document.getElementById('internalRateReturnContainer').style.display = 'block';
+        document.getElementById('internalRateReturn').style.display = 'block';
+    } else {
+        document.getElementById('internalRateReturnContainer').style.display = 'none';
+        document.getElementById('internalRateReturn').style.display = 'none';
+    }
+
+    if (selectedValue === 'AmortizationCapitalization') {
+        document.getElementById('AmortizationCapitalizationSelect').style.display = 'block';
+        document.getElementById('AmortizationCapitalization').style.display = 'block';
+    } else {
+        document.getElementById('AmortizationCapitalizationSelect').style.display = 'none';
+        document.getElementById('AmortizationCapitalization').style.display = 'none';
+    }
+
     hidenLabelInput();
     document.getElementById("valueToCalculate").value = 0;
+
+})
+
+document.getElementById("valueToCalculateAC").addEventListener("change", function () {
+    const selectedValue = this.value;
+    if (selectedValue === 'simpleCapitalization' || selectedValue === 'compoundCapitalization') {
+        document.getElementById('labelInterestRateAC').style.display = 'block';
+        document.getElementById('inputInterestRateAC').style.display = 'block';
+        document.getElementById('labelCapitalAC').style.display = 'block';
+        document.getElementById('inputCapitalAC').style.display = 'block';
+        document.getElementById('time').style.display = 'block';
+    } else {
+        document.getElementById('labelInterestRateAC').style.display = 'none';
+        document.getElementById('inputInterestRateAC').style.display = 'none';
+        document.getElementById('labelCapitalAC').style.display = 'none';
+        document.getElementById('inputCapitalAC').style.display = 'none';
+        document.getElementById('time').style.display = 'none';
+    } 
 
 })
 
@@ -330,3 +370,82 @@ document.getElementById("compoundInterestBtn").addEventListener("click", functio
         document.getElementById("result").innerHTML = `El tiempo es: ${tiempo} = ${tiempo.toFixed(2)}`;
     }
 })
+
+document.getElementById("internalRateReturnBtn").addEventListener("click", function() {
+
+    inputValues = []; 
+    inputValues.push(parseFloat(document.getElementById("inputInvestment").value * -1))
+    const inputs = document.querySelectorAll("#inputContainer input");
+    inputs.forEach(input => {
+    inputValues.push(parseFloat(input.value));
+    });
+
+    let irr = 0.1;
+    let difference = 1;
+
+    for (let i = 0; i < 1000; i++) {
+        let npv = 0;
+        let npvDerivative = 0;
+
+        for (let j = 0; j < inputValues.length; j++) {
+        npv += inputValues[j] / Math.pow(1 + irr, j);
+        npvDerivative += -j * inputValues[j] / Math.pow(1 + irr, j + 1);
+        }
+
+        irr = irr - npv / npvDerivative;
+        difference = npv;
+        if (Math.abs(difference) < 0.0001) {
+            break;
+        }
+    }
+    irr = irr*100;
+    document.getElementById("result").innerHTML = `La TIR es: ${irr.toFixed(2)}%`;
+
+})
+
+document.getElementById("AmortizationCapitalizationBtn").addEventListener("click", function() {
+    let principal = parseFloat(document.getElementById("inputCapitalAC").value);
+    let tasaInteres = parseFloat(document.getElementById("inputInterestRateAC").value);
+    const day = parseFloat(document.getElementById("day").value);
+    const month = parseFloat(document.getElementById("month").value);
+    const year = parseFloat(document.getElementById("year").value);
+    const selectedValue = document.getElementById("valueToCalculateAC").value
+    let periodos = 0;
+    if (year != 0) {
+        periodos = year;
+    } else if (month != 0) {
+        periodos = month / 12;
+    } else if (day != 0) {
+        let meses = day / 30
+        periodos = Math.floor(meses) / 12;
+    }
+    if (selectedValue == "simpleCapitalization") {
+        const tasaDecimal = tasaInteres / 100;
+        const montoAcumulado = principal * (1 + tasaDecimal * periodos);
+        document.getElementById("result").innerHTML = `El monto es: ${Math.floor(montoAcumulado)}`;
+    } else if (selectedValue == "compoundCapitalization") {
+        const tasaInteresDecimal = tasaInteres / 100;
+        const montoAcumulado = principal * Math.pow(1 + tasaInteresDecimal / 1, 1 * periodos);
+        let interesGanado = montoAcumulado - principal;
+        interesGanado = Math.floor(interesGanado);
+        document.getElementById("result").innerHTML = `El interes Ganado es: ${interesGanado.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    }
+})
+
+function generarInputs() {
+    const cantidad = parseFloat(document.getElementById("numberFlows").value);
+    const inputContainer = document.getElementById("inputContainer");
+    inputContainer.innerHTML = ""; // Limpiar el contenedor
+
+    for (let i = 1; i <= cantidad; i++) {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = `Flujo ${i}`;
+      input.style = "width: 90%;"
+      inputContainer.appendChild(input);
+    }
+  }
+
+  // Agregar un evento change al select
+  document.getElementById("numberFlows").addEventListener("change", generarInputs);
+  

@@ -14,9 +14,12 @@
             <option value="0" disabled selected>Seleccione</option>
             <option value="simpleInterest">Interés Simple</option>
             <option value="compoundInterest">Interés Compuesto</option>
+            <option value="internalRateReturn">Tasa interna de retorno</option>
+            <option value="AmortizationCapitalization">Amortización y Capitalización</option>
         </select>
 
-        <label for="valueToCalculate">Valor a Hallar:</label>
+        <div id="interest" style="display: none;">
+            <label for="valueToCalculate">Valor a Hallar:</label>
         <select id="valueToCalculate">
             <option value="0" disabled selected>Seleccione</option>
             <option value="inputInterest">Interés</option>
@@ -37,6 +40,41 @@
 
         <label for="inputFinalAmount" id="labelFinalAmount" style="display: none;">Monto Final:</label>
         <input type="number" id="inputFinalAmount" style="display: none;" placeholder="Ingrese el monto final">
+        </div>
+
+        <div id="AmortizationCapitalizationSelect" style="display: none;">
+            <label for="valueToCalculateAC">Valor a Hallar:</label>
+            <select id="valueToCalculateAC">
+                <option value="0" disabled selected>Seleccione</option>
+                <option value="simpleCapitalization">Capitalización simple</option>
+                <option value="compoundCapitalization">Capitalización compuesta</option>
+                <option value="Amortization">Amortización</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="inputInterestRateAC" id="labelInterestRateAC" style="display: none;">Tasa de Interés (%):</label>
+            <input type="number" id="inputInterestRateAC" style="display: none; width: 90%; position: relative; left: 30px;" placeholder="Ingrese la tasa de interés">
+    
+            <label for="inputCapitalAC" id="labelCapitalAC" style="display: none;">Capital:</label>
+            <input type="number" id="inputCapitalAC" style="display: none; width: 90%; position: relative; left: 30px;" placeholder="Ingrese el capital">
+        </div>
+
+        <div id="internalRateReturnContainer" style="display: none;">
+            <label for="inputInvestment" id="labelInterest">Inversión:</label>
+            <input type="number" id="inputInvestment" style="width: 90%;" placeholder="Ingrese el dinero a invertir">
+
+            <label for="numberFlows">Cantidad de Flujos:</label>
+            <select id="numberFlows">
+                <option value="0" disabled selected>Seleccione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div id="inputContainer"></div>
+        </div>
 
         <div id="time" style="display: none;">
             <label for="typeTime"> Tiempo</label>
@@ -87,6 +125,16 @@
         <div id="compoundInterest" style="display: none;">
             <br>
             <button id="compoundInterestBtn">Calcular</button>
+        </div>
+
+        <div id="internalRateReturn" style="display: none;">
+            <br>
+            <button id="internalRateReturnBtn">Calcular</button>
+        </div>
+
+        <div id="AmortizationCapitalization" style="display: none;">
+            <br>
+            <button id="AmortizationCapitalizationBtn">Calcular</button>
         </div>
 
     </div>
